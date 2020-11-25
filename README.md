@@ -2,6 +2,4 @@
 
 Integrantes
 
-David Tamayo
-Andrea Salcedo
-Britne Vargas
+David Tamayo - Andrea Salcedo - Britne Vargas
