@@ -46,14 +46,19 @@ int main(void)
 
                 break;
 
-            case 4:
-
+            case 4: printf( "\n ----DESENCRIPTAR CADENA----" );
+                
+                decrypt(); 
                 break;
 
-            case 5:
+            case 5: printf( "\n ----LLENAR CARACTERES POR IZQUIERDA O POR DERECHA----" );
+                
+                fill();
                 break;
 
-            case 6:
+            case 6: printf( "\n ----BORRAR CARACTERES----" );
+                
+                delete();
                 break;
 
             case 7:
@@ -151,4 +156,88 @@ void encriptar(){
     printf("\n%s\n",chain);
 
 }
+
+void decrypt(){
+
+    //Encriptación de una cadena (Sustitucion de caracteres)
+
+    int res=0,i;
+    char phrase[500];
+
+    printf("Introduzca una frase para desencriptar: ");
+    gets(phrase);
+    gets(phrase);
+    system("cls");
+
+    for(i = 0; i < 500;i++)
+    {
+        if (phrase[i]!='\0')
+        {
+            phrase[i]=phrase[i]-2;
+        }
+    }
+
+    printf("\n\nDesencriptado es:\n\n",res);
+    printf("\n\n%s\n\n",phrase);
+  
+
+}
+
+int fill(){
+    
+    int x;
+    int s;
+    int opc;
+    char d, c[10];
+    char phrase[100];
+    printf("Ingrese la frase correspondiente:");
+    gets(phrase);
+    gets(phrase);
+    system("cls");
+    printf("Ingrese La Letra a Repetir a repetir: ");
+    scanf(" %c", &d);
+    
+   
+    printf("Ingrese el numero de veces a repetir: ");
+    scanf("%d",&s);
+    for(int x=0;x<s;x++){
+        c[x]=d;
+   }
+    printf("1. Por izquierda \n2. Por derecha \nSeleccione:");
+    scanf("%d",&opc);
+    switch(opc)
+    {
+        case 1:
+             strcat(c,phrase);
+             printf("%s",c);
+             break;
+        case 2:
+            strcat(phrase,c);
+             printf("%s",phrase);
+             break;
+    }
+   
+    return 0;
+}
+
+
+int delete(){    
+    
+    char chain[50];
+    int i, j, s;
+    printf("Inserta tu frase porfavor: ");
+    gets(chain);
+    gets(chain);
+    s=strlen(chain);
+//    j='';
+    for(i=0;i<s;i++){
+        if(chain[i]=='a'||chain[i]=='e'||chain[i]=='i'||chain[i]=='o'||chain[i]=='u'){
+            chain[i]='*';
+        }
+    }
+    printf("%s\n\n", chain);
+    return 0;
+    
+}
+
 
