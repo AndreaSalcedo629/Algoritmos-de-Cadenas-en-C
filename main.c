@@ -105,6 +105,14 @@ int cantVeces(){
     printf("\n\t Esciba la palabara a buscar\n");
     fflush(stdin);
     gets(word);
+    
+    for(int i=0; chain[i] != '\0'; i++){
+        chain[i] = tolower(chain[i]);
+    }
+
+    for(int i=0; word[i] != '\0'; i++){
+        word[i] = tolower(word[i]);
+    }
 
     tok = strtok(chain," ,.;:");
 
