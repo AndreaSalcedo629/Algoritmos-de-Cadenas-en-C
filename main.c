@@ -3,9 +3,12 @@
 #include <string.h>
 #include <ctype.h>
 
-int nombrePropio();
-int cantVeces();
-void encriptar();
+int ownName();
+int repeatedWord();
+void encrypt();
+void decrypt();
+int fill();
+int delete();
 
 int main(void)
 {
@@ -30,19 +33,19 @@ int main(void)
         {
             case 1: printf( "\n ----CONVERTIR A NOMBRE PROPIO EL CONTENIDO DE LA CADENA----");
 
-                nombrePropio();
+                ownName();
 
                 break;
 
             case 2: printf( "\n ----CONTAR CUANTAS VECES ESTÁ UNA PALABRA EN UNA CADENA----" );
 
-                cantVeces();
+                repeatedWord();
 
                 break;
 
             case 3: printf( "\n ----ENCRIPTAR CADENA----" );
 
-                encriptar();
+                encrypt();
 
                 break;
 
@@ -76,7 +79,7 @@ int main(void)
     return 0;
 }
 
-int nombrePropio(){
+int ownName(){
 
     //Corvertir el contenido de una cadena a nombre propio
 
@@ -95,7 +98,7 @@ int nombrePropio(){
     printf("\n");
 }
 
-int cantVeces(){
+int repeatedWord(){
 
     //Contar la cantidad de veces que se repite una palabra en una cadena
 
@@ -130,7 +133,7 @@ int cantVeces(){
     printf("\n\t la palabra se encontro %d veces\n",cont);
 }
 
-void encriptar(){
+void encrypt(){
 
     //Encriptación de una cadena (Sustitucion de caracteres)
 
