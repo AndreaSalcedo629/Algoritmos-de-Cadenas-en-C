@@ -10,6 +10,8 @@ void decrypt();
 int fill();
 int delete();
 void intersection();
+void diference();
+void deletChar();
 
 int main(void)
 {
@@ -70,9 +72,11 @@ int main(void)
                 break;
 
             case 8:
+                diference();
                 break;
 
             case 9:
+                deletChar();
                 break;
         }
 
@@ -263,3 +267,36 @@ void intersection(){
         getchar();
 }
 
+void diference(){
+    fflush(stdin);
+    char word[50];
+    char charDelet[50];
+    printf("\nDigite la primera cadena \n");
+    gets(word);
+    printf("\nDigite la segunda cadena \n");
+    gets(charDelet);
+    int indiceCadena = 0, indiceCadenaLimpia = 0;
+    int charInclude = 1;
+    while (word[indiceCadena]) {
+        charInclude = 1;
+        int indiceCaracteres = 0;
+        while (charDelet[indiceCaracteres]) {
+            if (word[indiceCadena] == charDelet[indiceCaracteres]) {
+                charInclude = 0;
+            }
+            indiceCaracteres++;
+        }
+
+        if (charInclude) {
+            word[indiceCadenaLimpia] = word[indiceCadena];
+            indiceCadenaLimpia++;
+        }
+        indiceCadena++;
+    }
+    word[indiceCadenaLimpia] = 0;
+    printf("Despues de remover es: '%s'\n", word);
+}
+
+void deletChar(){
+    
+}
