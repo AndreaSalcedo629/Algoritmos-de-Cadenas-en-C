@@ -280,7 +280,7 @@ void diference(){
     while (word[indexChar]) {
         charInclude = 1;
         int indiceCaracteres = 0;
-        while (charDelet[indiceCaracteres]||word[indexChar]==NULL) {
+        while (charDelet[indiceCaracteres]) {
             if (word[indexChar] == charDelet[indiceCaracteres]) {
                 charInclude = 0;
             }
