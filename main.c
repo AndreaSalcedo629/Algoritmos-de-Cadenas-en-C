@@ -275,25 +275,31 @@ void diference(){
     gets(word);
     printf("\nDigite la segunda cadena \n");
     gets(charDelet);
-    int indexChar= 0, indexWord = 0;
+    for (int i = 0; i < 50; ++i) {
+        word[i]=tolower(word[i]);
+    }
+    for (int i = 0; i < 50; ++i) {
+        charDelet[i]=tolower(charDelet[i]);
+    }
+    int indiceCadena = 0, indiceCadenaLimpia = 0;
     int charInclude = 1;
-    while (word[indexChar]) {
+    while (word[indiceCadena]) {
         charInclude = 1;
         int indiceCaracteres = 0;
         while (charDelet[indiceCaracteres]) {
-            if (word[indexChar] == charDelet[indiceCaracteres]) {
+            if (word[indiceCadena] == charDelet[indiceCaracteres]) {
                 charInclude = 0;
             }
             indiceCaracteres++;
         }
 
         if (charInclude) {
-            word[indexWord] = word[indexChar];
-            indexWord++;
+            word[indiceCadenaLimpia] = word[indiceCadena];
+            indiceCadenaLimpia++;
         }
-        indexChar++;
+        indiceCadena++;
     }
-    word[indexWord] = 0;
+    word[indiceCadenaLimpia] = 0;
     printf("Despues de remover es: '%s'\n", word);
 }
 
