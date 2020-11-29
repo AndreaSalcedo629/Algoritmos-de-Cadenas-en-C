@@ -15,7 +15,7 @@ void deleteChar();
 int auxIntersection(char[],char);
 void auxDeleteChar(char[],char[]);
 char invert(char[]);
-
+int validate(char[]);
 
 int main(void)
 {
@@ -303,25 +303,27 @@ void intersection(){
     gets(charDelete);
     char aux[30];
     int index=0;
-
-    for (int i = 0; i < 50; ++i) {
-        word[i]=tolower(word[i]);
-        charDelete[i]=tolower(charDelete[i]);
-    }
-
-    for (int j = 0; j <strlen(word) ; ++j) {
-        if (auxIntersection(charDelete,word[j])==1){
-            if (auxIntersection(aux,word[j])!=1){
-                aux[index]=word[j];
-                index++;
+    if (validate(word)!=0&&validate(charDelete)!=0) {
+        for (int i = 0; i < 50; ++i) {
+            word[i] = tolower(word[i]);
+            charDelete[i] = tolower(charDelete[i]);
+        }
+        for (int j = 0; j < strlen(word); ++j) {
+            if (auxIntersection(charDelete, word[j]) == 1) {
+                if (auxIntersection(aux, word[j]) != 1) {
+                    aux[index] = word[j];
+                    index++;
+                }
             }
         }
+        printf("la interseccion entre las dos cadenas es: %s\n", aux);
+    }else{
+        printf("Datos invalidos, recuerda llenar todos los datos indicados.\n"
+               "Ademas una cadena no puede estar conformada solo por un espacio.\n");
     }
-    printf("la interseccion entre las dos cadenas es: %s\n", aux);
-
 }
 
-void diference(){
+void diference() {
     fflush(stdin);
     char word[50];
     char charDelete[50];
@@ -330,10 +332,11 @@ void diference(){
     printf("\nDigite la segunda cadena \n");
     gets(charDelete);
     for (int i = 0; i < 50; ++i) {
-        word[i]=tolower(word[i]);
-        charDelete[i]=tolower(charDelete[i]);
+        word[i] = tolower(word[i]);
+        charDelete[i] = tolower(charDelete[i]);
     }
-    int indiceCadena = 0, indiceCadenaLimpia = 0;
+    if (validate(word)!=0&& validate(charDelete)!=0){
+        int indiceCadena = 0, indiceCadenaLimpia = 0;
     int charInclude = 1;
     while (word[indiceCadena]) {
         charInclude = 1;
@@ -352,6 +355,10 @@ void diference(){
     }
     word[indiceCadenaLimpia] = 0;
     printf("Despues de remover los caracteres repetidos, la cadena resultante es: %s\n", word);
+}else{
+        printf("Datos invalidos, recuerda llenar todos los datos indicados.\n"
+               "Ademas una cadena no puede estar conformada solo por un espacio.\n");
+    }
 }
 
 void auxDeleteChar(char cadena1[], char cadena2[]){
@@ -400,38 +407,59 @@ void deleteChar() {
     char auxWord[50];
     char charDelete[50];
 
-    printf("\nDigite la primera charDelete \n");
+    printf("\nDigite la primera cadena \n");
     gets(auxWord);
-    printf("\nDigite la segunda charDelete \n");
+    printf("\nDigite la segunda cadena \n");
     gets(charDelete);
 
-    word[0] = ' ';
-    for (int j = 1; j <= strlen(word) + 1; ++j) {
-        word[j] = auxWord[j - 1];
+    if (validate(auxWord)!=0&&validate(charDelete)!=0){
+        word[0] = ' ';
+        for (int j = 1; j <= strlen(word) + 1; ++j) {
+            word[j] = auxWord[j - 1];
+        }
+
+        printf("\nDigite por que lado quiere quitar los caracteres: \n1.Izquierda.\n2.Derecha.\n");
+        scanf("%d", &cont);
+        word[strlen(word) + 1] = ' ';
+        for (int i = 0; i < 50; ++i) {
+            word[i] = tolower(word[i]);
+            charDelete[i] = tolower(charDelete[i]);
+            aux[i] = charDelete[i];
+            aux1[i] = charDelete[i];
+        }
+        if (cont == 1) {
+            auxDeleteChar(aux, word);
+            printf("Despues de remover los caracteres repetidos por izquierda, la palabra resultante es: \n%s\n", aux);
+        }
+        if (cont == 2) {
+            invert(aux1);
+            auxDeleteChar(aux1, word);
+            invert(aux1);
+            printf("La cadena resultante es: '%s'\n", aux1);
+
+        } else if (cont < 1 || cont > 2) {
+            printf("Digito una opcion erronea. ");
+        }
+    }else{
+        printf("Datos invalidos, recuerda llenar todos los datos indicados.\nAdemas una cadena no puede estar conformada solo por un espacio.\n");
     }
 
-    printf("\nDigite por que lado quiere quitar los caracteres: \n1.Izquierda.\n2.Derecha.\n");
-    scanf("%d", &cont);
-    word[strlen(word) + 1] = ' ';
-    for (int i = 0; i < 50; ++i) {
-        word[i] = tolower(word[i]);
-        charDelete[i] = tolower(charDelete[i]);
-        aux[i] = charDelete[i];
-        aux1[i] = charDelete[i];
-    }
-    if (cont == 1) {
-        auxDeleteChar(aux, word);
-        printf("Despues de remover los caracteres repetidos por izquierda, la palabra resultante es: \n%s\n", aux);
-    }
-    if (cont == 2) {
-        invert(aux1);
-        auxDeleteChar(aux1, word);
-        invert(aux1);
-        printf("La cadena resultante es: '%s'\n", aux1);
-
-    } else if (cont < 1 || cont > 2) {
-        printf("Digito una opcion erronea. ");
-    }
 }
 
-
+int validate(char word[]){
+    char aux1[50];
+    int aux=0;
+    int index=0;
+    for (int j = 0; j <strlen(aux1) ; ++j) {
+        if (word[j]!=' '){
+            aux1[index]=word[j];
+            index++;
+        }
+    }
+    for (int i = 0; i <strlen(aux1) ; ++i) {
+        if (aux1[i]!='\0'){
+            aux=1;
+        }
+    }
+    return aux;
+}
