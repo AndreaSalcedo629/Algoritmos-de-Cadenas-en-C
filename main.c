@@ -203,7 +203,7 @@ void encrypt(){
 
 void decrypt(){
 
-    //Desencriptación de una cadena (Sustitucion de caracteres)
+    //Encriptación de una cadena (Sustitucion de caracteres)
 
     int res=0,i;
     char phrase[500];
@@ -212,8 +212,9 @@ void decrypt(){
     gets(phrase);
     gets(phrase);
     system("cls");
-
-    for(i = 0; i < 500;i++)
+    if (isalpha(phrase[i]))
+    {
+     for(i = 0; i < 500;i++)
     {
         if (phrase[i]!='\0')
         {
@@ -222,65 +223,83 @@ void decrypt(){
     }
 
     printf("\n\nDesencriptado es:\n\n",res);
-    printf("\n\n%s\n\n",phrase);
-
-
+    printf("\n\n%s\n\n",phrase);   
+    }else{
+        printf("Ingrese una cadena con caracteres sin números");
+    }
 }
 
 int fill(){
-
-    int x;
-    int s;
+    
+    int x, i=0, s;
+    
     int opc;
     char d, c[10];
     char phrase[100];
     printf("Ingrese la frase correspondiente:");
     gets(phrase);
     gets(phrase);
-    system("cls");
-    printf("Ingrese La Letra a Repetir a repetir: ");
-    scanf(" %c", &d);
-
-
-    printf("Ingrese el numero de veces a repetir: ");
+    
+    if (isalpha(phrase[i]))
+    {
+        printf("Ingrese La Letra a Repetir a repetir: ");
+    scanf("%c", &d);
+    if(isalpha(d))
+    {
+        
+    printf("Ingrese el número de veces a repetir: ");
     scanf("%d",&s);
-    for(int x=0;x<s;x++){
+    
+        for(int x=0;x<s;x++){
         c[x]=d;
-    }
+        }
+        
     printf("1. Por izquierda \n2. Por derecha \nSeleccione:");
     scanf("%d",&opc);
-    switch(opc)
+    
+        switch(opc)
     {
         case 1:
-            strcat(c,phrase);
-            printf("%s",c);
-            break;
+             strcat(c,phrase);
+             printf("%s",c);
+             break;
         case 2:
             strcat(phrase,c);
-            printf("%s",phrase);
-            break;
+             printf("%s",phrase);
+             break;
+        }
+        
+    }else{
+        printf("Ingrese una cadena de caracteres sin números");
     }
-
+    }else{
+        printf("Ingrese caracteres, no números");
+    }
+   
     return 0;
 }
 
-
-int delete() {
-
+int delete(){    
+    
     char chain[50];
     int i, j, s;
     printf("Inserta tu frase porfavor: ");
     gets(chain);
     gets(chain);
-    s = strlen(chain);
-//    j='';
-    for (i = 0; i < s; i++) {
-        if (chain[i] == 'a' || chain[i] == 'e' || chain[i] == 'i' || chain[i] == 'o' || chain[i] == 'u') {
-            chain[i] = '*';
+    s=strlen(chain);
+    if(isalpha(chain[i]))
+    {
+         for(i=0;i<s;i++){
+        if(chain[i]=='a'||chain[i]=='e'||chain[i]=='i'||chain[i]=='o'||chain[i]=='u'){
+            chain[i]='*';
         }
     }
     printf("%s\n\n", chain);
-    return 0;
+    }else{
+        printf("No es un de tipo caracter intente de nuevo");
+    }
+   
+    return 0; 
 }
 
 int auxIntersection(char word[],char charDelete){
