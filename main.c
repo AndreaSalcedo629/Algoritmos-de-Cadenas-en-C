@@ -250,7 +250,8 @@ int delete() {
     printf("%s\n\n", chain);
     return 0;
 }
-    int auxIntersection(char word[],char charDelet){
+
+int auxIntersection(char word[],char charDelet){
         int aux=0;
         for (int j = 0; j <strlen(word) ; ++j) {
             if(word[j]==charDelet){
@@ -258,15 +259,15 @@ int delete() {
             }
         }
         return aux;
-    }
+}
 
-    void intersection(){
+void intersection(){
         fflush(stdin);
         char word[50];
         char charDelet[50];
-        printf("\nDigite la primera charDelet \n");
+        printf("\nDigite la primera cadena \n");
         gets(word);
-        printf("\nDigite la segunda charDelet \n");
+        printf("\nDigite la segunda cadena \n");
         gets(charDelet);
         char aux[30];
         int index=0;
@@ -286,9 +287,9 @@ int delete() {
         }
         printf("la interseccion entre las dos cadenas es: %s\n", aux);
 
-    }
+}
 
-    void diference(){
+void diference(){
         fflush(stdin);
         char word[50];
         char charDelet[50];
@@ -319,9 +320,9 @@ int delete() {
         }
         word[indiceCadenaLimpia] = 0;
         printf("Despues de remover los caracteres repetidos, la cadena resultante es: %s\n", word);
-    }
+}
 
-    void auxDeletChar(char cadena1[], char cadena2[]){
+void auxDeletChar(char cadena1[], char cadena2[]){
         int cont=0;
         int indiceCadena = 0, indiceCadenaLimpia = 0;
         int charInclude = 1;
@@ -331,7 +332,6 @@ int delete() {
             while (cadena2[indiceCaracteres]) {
                 if (cadena1[indiceCadena] == cadena2[indiceCaracteres]&&cont!=-1) {
                     charInclude = 0;
-                    printf("%c",cadena2[indiceCaracteres]);
                 }
                 indiceCaracteres++;
             }
@@ -342,12 +342,12 @@ int delete() {
             }
             indiceCadena++;
         }
-        printf("\n%s",cadena2);
+
         cadena1[indiceCadenaLimpia] = 0;
-    }
+}
 
 
-    char invert (char charDelet[]){
+char invert (char charDelet[]){
         int indexChar = strlen(charDelet);
         char tempo;
         for (int izquierda = 0, derecha = indexChar - 1; izquierda < (indexChar / 2);
@@ -357,9 +357,9 @@ int delete() {
             charDelet[derecha] = tempo;
         }
         return *charDelet;
-    }
+}
 
-    void deletChar() {
+void deletChar() {
         fflush(stdin);
         int cont = 0;
         char aux[50];
@@ -400,6 +400,6 @@ int delete() {
         } else if (cont < 1 || cont > 2) {
             printf("Digito una opcion erronea. ");
         }
-    }
+}
 
 
