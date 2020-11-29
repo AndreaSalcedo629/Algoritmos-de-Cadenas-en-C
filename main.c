@@ -120,7 +120,7 @@ int ownName(){
         }
         printf("\n");
     }else{
-        printf("\nERROR! NO SE A DIGITADO UNA FRASE\n");
+        printf("\nERROR! NO SE HA DIGITADO UNA FRASE\n");
     }
 }
 
