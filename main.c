@@ -93,8 +93,8 @@ int main(void)
             }
 
         }if (op>10||op<1){
-                printf("Opcion invalida\n");
-            }
+            printf("Opcion invalida\n");
+        }
 
     } while ( op != 10 );
 
@@ -337,25 +337,25 @@ void diference() {
     }
     if (validate(word)!=0&& validate(charDelete)!=0){
         int indiceCadena = 0, indiceCadenaLimpia = 0;
-    int charInclude = 1;
-    while (word[indiceCadena]) {
-        charInclude = 1;
-        int indiceCaracteres = 0;
-        while (charDelete[indiceCaracteres]) {
-            if (word[indiceCadena] == charDelete[indiceCaracteres]) {
-                charInclude = 0;
+        int charInclude = 1;
+        while (word[indiceCadena]) {
+            charInclude = 1;
+            int indiceCaracteres = 0;
+            while (charDelete[indiceCaracteres]) {
+                if (word[indiceCadena] == charDelete[indiceCaracteres]) {
+                    charInclude = 0;
+                }
+                indiceCaracteres++;
             }
-            indiceCaracteres++;
+            if (charInclude) {
+                word[indiceCadenaLimpia] = word[indiceCadena];
+                indiceCadenaLimpia++;
+            }
+            indiceCadena++;
         }
-        if (charInclude) {
-            word[indiceCadenaLimpia] = word[indiceCadena];
-            indiceCadenaLimpia++;
-        }
-        indiceCadena++;
-    }
-    word[indiceCadenaLimpia] = 0;
-    printf("Despues de remover los caracteres repetidos, la cadena resultante es: %s\n", word);
-}else{
+        word[indiceCadenaLimpia] = 0;
+        printf("Despues de remover los caracteres repetidos, la cadena resultante es: %s\n", word);
+    }else{
         printf("Datos invalidos, recuerda llenar todos los datos indicados.\n"
                "Ademas una cadena no puede estar conformada solo por un espacio.\n");
     }
@@ -413,6 +413,10 @@ void deleteChar() {
     gets(charDelete);
 
     if (validate(auxWord)!=0&&validate(charDelete)!=0){
+        for (int i = 0; i < 50; ++i) {
+            auxWord[i] = tolower(word[i]);
+            charDelete[i] = tolower(charDelete[i]);
+        }
         word[0] = ' ';
         for (int j = 1; j <= strlen(word) + 1; ++j) {
             word[j] = auxWord[j - 1];
