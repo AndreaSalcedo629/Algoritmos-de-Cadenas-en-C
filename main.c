@@ -100,7 +100,6 @@ int main(void)
 
     return 0;
 }
-
 int ownName(){
 
     //Corvertir el contenido de una cadena a nombre propio
@@ -111,50 +110,67 @@ int ownName(){
     gets(chainn);
     gets(chainn);
 
-    for (char *word = strtok(chainn, " "); word; word = strtok(NULL, " "))
-    {
-        for (int i = 0; word[i]; ++i)
-            printf("%c", i ? tolower(word[i]) : toupper(word[i]));
-        printf(" ");
+    if (chainn[0]) {
+
+        printf("\nLa frase convertida a nombre propio es:\n");
+        for (char *word = strtok(chainn, " "); word; word = strtok(NULL, " ")) {
+            for (int i = 0; word[i]; ++i)
+                printf("%c", i ? tolower(word[i]) : toupper(word[i]));
+            printf(" ");
+        }
+        printf("\n");
+    }else{
+        printf("\nERROR! NO SE A DIGITADO UNA FRASE\n");
     }
-    printf("\n");
 }
 
-int repeatedWord(){
+int repeatedWord() {
 
     //Contar la cantidad de veces que se repite una palabra en una cadena
 
     char chain[100];
     char *tok;
-    int cont=0;
+    int cont = 0;
     char word[10];
 
     printf("\n\t Escriba una oracion\n");
     gets(chain);
     gets(chain);
-    printf("\n\t Esciba la palabara a buscar\n");
-    fflush(stdin);
-    gets(word);
+    if (chain[0]) {
 
-    for(int i=0; chain[i] != '\0'; i++){
-        chain[i] = tolower(chain[i]);
-    }
+        printf("\n\t Esciba la palabra a buscar\n");
+        fflush(stdin);
+        gets(word);
 
-    for(int i=0; word[i] != '\0'; i++){
-        word[i] = tolower(word[i]);
-    }
+        if(word[0]) {
 
-    tok = strtok(chain," ,.;:");
+            for (int i = 0; chain[i] != '\0'; i++) {
+                chain[i] = tolower(chain[i]);
+            }
 
-    while (tok != NULL){
-        if (strcmp(tok, word)==0){
-            cont++;
+            for (int i = 0; word[i] != '\0'; i++) {
+                word[i] = tolower(word[i]);
+            }
+
+            tok = strtok(chain, " ,.;:");
+
+            while (tok != NULL) {
+                if (strcmp(tok, word) == 0) {
+                    cont++;
+                }
+                tok = strtok(NULL, " ,.;:");
+            }
+            printf("\n\t la palabra se encontro %d veces\n", cont);
+        }else{
+            printf("\nERROR! NO SE HA DIGITADO LA PALABRA A BUSCAR \n");
         }
-        tok= strtok(NULL," ,.;:");
-    }
-    printf("\n\t la palabra se encontro %d veces\n",cont);
-}
 
+
+    } else {
+        printf("\nERROR! NO SE HA DIGITADO UNA ORACION\n");
+        return 0;
+    }
+}
 void encrypt(){
 
     //Encriptación de una cadena (Sustitucion de caracteres)
@@ -169,22 +185,25 @@ void encrypt(){
     fflush(stdin);
     system("CLS");
 
-    for(i = 0; i < 500;i++)
-    {
-        if (chain[i]!='\0')
-        {
-            chain[i]=chain[i]+2;
-        }
-    }
+    if(chain[0]) {
 
-    printf("\nLa frase encriptada es: ");
-    printf("\n%s\n",chain);
+        for (i = 0; i < 500; i++) {
+            if (chain[i] != '\0') {
+                chain[i] = chain[i] + 2;
+            }
+        }
+
+        printf("\nLa frase encriptada es: ");
+        printf("\n%s\n", chain);
+    }else{
+        printf("\nERROR! NO SE HA DIGITADO UNA FRASE PARA ENCRIPTAR\n");
+    }
 
 }
 
 void decrypt(){
 
-    //Encriptación de una cadena (Sustitucion de caracteres)
+    //Desencriptación de una cadena (Sustitucion de caracteres)
 
     int res=0,i;
     char phrase[500];
